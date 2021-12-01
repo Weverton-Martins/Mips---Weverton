@@ -1,0 +1,16 @@
+#Crie um programa para multiplicar dois números
+.text 
+addi $s1,$s1, 12
+addi $s2,$s2, 10
+add  $t0,$t0,1
+	
+	#$t1 tera o resultado	
+loop:
+
+add $t1,$t1,$s1
+sub $s2,$s2,1 #subtrai o valor de $s2
+slt $t2,$s2,$t0 
+bne $s2,1,loop #diferente de 0 faz o loop
+
+	
+  	

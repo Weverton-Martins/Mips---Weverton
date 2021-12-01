@@ -1,0 +1,42 @@
+#Converta as instruções em C abaixo para instruções MIPS. Considere os seguintes registradores para cada variável:
+#a = $s0, b = $s1, c = $s2, d = $s3, e = $s4, f = $s5.
+
+#a)a = b – c
+sub $s0,$s1,$s2
+#b) b = a + c
+add $s1,$s0,$s2
+#c)d = (a + b – c)
+add $s0,$s1,$s0
+sub $s3,$s0,$s2
+#d)f = (a + b) – d
+add $t1,$s0,$s1
+sub $s5,$t1,$s3
+#e) c = a – ( b + d)
+add $t1,$s1,$s3
+sub $s2,$s0,$t1
+#f) e = ( a – ( b – c )
+sub $t1,$s1,$s2
+sub $s4,$s0,$t1
+#g) e = ( a – ( b – c ) + f )
+sub $t1,$s1,$s2
+sub $t2,$s0,$t1
+add $s4,$t2,$s5
+#h) f = e – (a – b ) + ( b – c )
+sub $t1,$s1,$s2
+sub $t2,$s0,$s1
+add $t3,$t2,$t1
+sub $s5,$s4,$t3
+#i) a = b[15] – c;
+lw  $t1,60($s1)
+sub $s0,$t1,$s2
+#j) b = a[5] + c[3];
+lw  $t1,12($s2)
+lw  $t2,20($s0)
+add $s1,$t2,$t1
+#k) c = b – a[21];
+lw  $t1,84($s0)
+sub $s2,$s1,$t1
+#l) a[10] = b – c;
+sub $t1,$s1,$s2
+sw  $t1,40($s0)
+
